@@ -1,0 +1,32 @@
+extends layout
+
+block body
+    +navbar-fixed("Hacktoberfest Progress Checker","navbar","inverse")
+        +nav_item("#","active") Home
+        //+nav_item("#") About
+    .container
+        .starter-template
+            h1
+                | Check your
+                a(href="https://hacktoberfest.digitalocean.com/") &nbsp;Hacktoberfest&nbsp;
+                | progress
+
+        .row
+            .col-md-4
+                +input("text","ghuser","Github Username","Github Username","ghuser")
+                +submit("Check","default","checkbutton")
+
+        .row
+            h3#total Total PR's: 0
+
+            table.table.table-stripped.table-hover
+                thead
+                    tr
+                        th Repository
+                        th PR #
+                        th Title
+                        th Created
+                        th Closed
+                tbody#results
+
+            img(src="images/loading.gif").loading#loading
