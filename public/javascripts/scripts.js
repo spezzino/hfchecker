@@ -42,10 +42,11 @@ function getDataFromGithub(username) {
 }
 
 $(function () {
-    $("#checkbutton").click(function () {
+    $("#ghform").submit(function () {
         var ghuser = $("#ghuser").val();
         if (ghuser != "") {
             getDataFromGithub(ghuser);
         }
+        return false;
     });
 });
