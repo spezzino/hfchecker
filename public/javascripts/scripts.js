@@ -9,8 +9,6 @@ function getDataFromGithub(username) {
 
     $.ajax(url, {
         success: function (data, status, jqxhr) {
-            console.log(status);
-
             if (status == "success") {
                 var total = $("#total");
 
@@ -19,7 +17,6 @@ function getDataFromGithub(username) {
                 $.each(data.items, function (ix, item) {
                     $.ajax(item.repository_url, {
                         success: function (data2, status2, jqxhr2) {
-                            console.log(data2);
                             results.append("<tr>" +
                                 "<td><a href='" + data2.html_url + "' target='_blank'>" + data2.name + "</a></td>" +
                                 "<td><a href='" + item.html_url + "' target='_blank'>" + item.number + "</a></td>" +

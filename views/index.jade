@@ -1,5 +1,9 @@
 extends layout
 
+mixin submit2(text,name,id)
+    .form-group
+        button.btn.btn-default(type="submit",name="#{name}",id="#{id}")= text
+
 block body
     +navbar-fixed("Hacktoberfest Progress Checker","navbar","inverse")
         +nav_item("#","active") Home
@@ -14,7 +18,7 @@ block body
         .row
             .col-md-4
                 +input("text","ghuser","Github Username","Github Username","ghuser")
-                +submit("Check","default","checkbutton")
+                +submit2("Check","default","checkbutton")
 
         .row
             h3#total Total PR's: 0
