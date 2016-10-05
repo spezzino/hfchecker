@@ -14,20 +14,25 @@ function getDataFromGithub(username) {
 
                 total.html("Total PR's: " + data.items.length);
 
-                $.each(data.items, function (ix, item) {
-                    $.ajax(item.repository_url, {
-                        success: function (data2, status2, jqxhr2) {
-                            results.append("<tr>" +
-                                "<td><a href='" + data2.html_url + "' target='_blank'>" + data2.name + "</a></td>" +
-                                "<td><a href='" + item.html_url + "' target='_blank'>" + item.number + "</a></td>" +
-                                "<td>" + item.title + "</td>" +
-                                "<td>" + item.created_at + "</td>" +
-                                "<td>" + (item.closed_at == null ? "open" : item.closed_at) + "</td>" +
-                                "</tr>");
-                            loading.css("display", "none");
-                        }
+                if(data.total_count!=0){
+                    $.each(data.items, function (ix, item) {
+                        $.ajax(item.repository_url, {
+                            success: function (data2, status2, jqxhr2) {
+                                results.append("<tr>" +
+                                    "<td><a href='" + data2.html_url + "' target='_blank'>" + data2.name + "</a></td>" +
+                                    "<td><a href='" + item.html_url + "' target='_blank'>" + item.number + "</a></td>" +
+                                    "<td>" + item.title + "</td>" +
+                                    "<td>" + item.created_at + "</td>" +
+                                    "<td>" + (item.closed_at == null ? "open" : item.closed_at) + "</td>" +
+                                    "</tr>");
+                                loading.css("display", "none");
+                            }
+                        });
                     });
-                });
+                } else {
+                    results.html("<tr><td colspan='5' style='text-align: center'>No pull request made by the user.</td></tr>");
+                    loading.css("display", "none");
+                }    
             } else {
                 results.html("<tr><td colspan='5' style='text-align: center'>No data to show</td></tr>");
                 loading.css("display", "none");
