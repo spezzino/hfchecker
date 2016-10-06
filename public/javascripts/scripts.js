@@ -24,7 +24,7 @@ function getDataFromGithub(username) {
                 var total = $("#total");
 
                 if(data.total_count!=0){
-                  total.html("Total PR's: " + data.items.length + "<button onclick='tweetIt()'>Tweet it!</button>");
+                  total.html("Total PR's: " + data.items.length + "  <button class='btn btn-info' onclick='tweetIt()'>Tweet it!</button>");
                 }else{
                   total.html("Total PR's: " + data.items.length);
                 }
