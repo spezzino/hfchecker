@@ -9,10 +9,25 @@ function getDataFromGithub(username) {
 
     $.ajax(url, {
         success: function (data, status, jqxhr) {
+
+          tweetIt = function tweetIt() {
+            var phrase = "I have completed " + data.items.length + " pull requests. Check your progress on hfchecker.stefanopy.xyz #hacktoberfest";
+            var tweetUrl = 'https://twitter.com/share?text=' +
+              encodeURIComponent(phrase) +
+              '.' +
+              '&url=' +
+              'http://hfchecker.stefanopy.xyz/';
+              window.open(tweetUrl);
+            }
+
             if (status == "success") {
                 var total = $("#total");
 
-                total.html("Total PR's: " + data.items.length);
+                if(data.total_count!=0){
+                  total.html("Total PR's: " + data.items.length + "<button onclick='tweetIt()'>Tweet it!</button>");
+                }else{
+                  total.html("Total PR's: " + data.items.length);
+                }
 
                 if(data.total_count!=0){
                     $.each(data.items, function (ix, item) {
@@ -32,7 +47,7 @@ function getDataFromGithub(username) {
                 } else {
                     results.html("<tr><td colspan='5' style='text-align: center'>No pull request made by the user.</td></tr>");
                     loading.css("display", "none");
-                }    
+                }
             } else {
                 results.html("<tr><td colspan='5' style='text-align: center'>No data to show</td></tr>");
                 loading.css("display", "none");
