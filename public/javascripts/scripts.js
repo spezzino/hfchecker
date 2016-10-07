@@ -61,7 +61,40 @@ function getDataFromGithub(username) {
     });
 }
 
+function getTimeRemaining(deadline){
+    var localDate = new Date();
+    var offsetTime = new Date(localDate.getTime() - localDate.getTimezoneOffset() * 60 * 1000);
+    var t = Date.parse(deadline) - Date.parse(offsetTime);
+    var seconds = Math.floor( (t/1000) % 60 );
+    var minutes = Math.floor( (t/1000/60) % 60 );
+    var hours = Math.floor( (t/(1000*60*60)) % 24 );
+    var days = Math.floor( t/(1000*60*60*24) );
+    return {
+        'total': t,
+        'days': days,
+        'hours': hours,
+        'minutes': minutes,
+        'seconds': seconds
+    };
+}
+
+function clock() {
+    var deadline = '2016-11-01';
+    var t = getTimeRemaining(deadline);
+    $(".days").html(t.days);
+    $(".hours").html(('0' + t.hours).slice(-2));
+    $(".minutes").html(('0' + t.minutes).slice(-2));
+    $(".seconds").html(('0' + t.seconds).slice(-2));
+
+    if(t.total<=0){
+        clearInterval(timeinterval);
+    }
+}
+
 $(function () {
+    clock();
+    var timeinterval = setInterval(clock, 1000);
+    
     $("#ghform").submit(function () {
         var ghuser = $("#ghuser").val();
         if (ghuser != "") {
