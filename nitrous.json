@@ -1,0 +1,8 @@
+{
+  "template": "nodejs",
+  "ports": [3000],
+  "name": "hfchecker",
+  "scripts": {
+    "Start Node server": "node ~/code/hfchecker/bin/www"
+  }
+}
