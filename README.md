@@ -11,6 +11,11 @@
 3. run `npm start` to start the expressjs webserver
 4. navigate to yourIp:3000
 
+## Nitrous Quickstart
+Setup your own development environment on [nitrous.io](www.nitrous.io).
+
+[![Nitrous Quickstart](https://nitrous-image-icons.s3.amazonaws.com/quickstart.svg)](https://www.nitrous.io/quickstart?repo=https://github.com/spezzino/hfchecker)
+
 ## Contribution
 Feel free to contribute to this repo, improvements and bug fixes are welcome.
 
