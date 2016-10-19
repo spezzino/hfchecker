@@ -38,7 +38,7 @@ function getDataFromGithub(username) {
                                     "<td><a href='" + item.html_url + "' target='_blank'>" + item.number + "</a></td>" +
                                     "<td>" + item.title + "</td>" +
                                     "<td>" + item.created_at + "</td>" +
-                                    "<td>" + (item.closed_at == null ? "open" : item.closed_at) + "</td>" +
+                                    "<td>" + (item.closed_at == null ? "open" : "closed") + "</td>" +
                                     "</tr>");
                                 loading.css("display", "none");
                             }
@@ -94,7 +94,7 @@ function clock() {
 $(function () {
     clock();
     var timeinterval = setInterval(clock, 1000);
-    
+
     $("#ghform").submit(function () {
         var ghuser = $("#ghuser").val();
         if (ghuser != "") {
