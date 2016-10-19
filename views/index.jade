@@ -4,21 +4,41 @@ mixin submit2(text,name,id)
     .form-group
         button.btn.btn-default(type="submit",name="#{name}",id="#{id}")= text
 
+mixin nav_item2(href, active)
+    li(class=active): a( href=href, target="_blank" )
+        block
+
 block body
     +navbar-fixed("Hacktoberfest Progress Checker","navbar","inverse")
         +nav_item("#","active") Home
-        //+nav_item("#") About
+        +nav_item2("https://hacktoberfest.digitalocean.com/#featured-projects") Featured Projects
+        +nav_item2("https://github.com/search?l=&q=state%3Aopen+label%3Ahacktoberfest&ref=advsearch&type=Issues&utf8=%E2%9C%93") Browse all Projects
     .container
         .starter-template
             h1
                 | Check your
                 a(href="https://hacktoberfest.digitalocean.com/") &nbsp;Hacktoberfest&nbsp;
                 | progress
-
+        .row
+            .col-md-12
+                h3.countdown
+                    | TIME REMAINING
+        .row
+            .countdown
+                .col-md-12
+                    span.days
+                    | d
+                    span.hours
+                    | h
+                    span.minutes
+                    | m
+                    span.seconds
+                    | s
         .row
             .col-md-4
-                +input("text","ghuser","Github Username","Github Username","ghuser")
-                +submit2("Check","default","checkbutton")
+                form#ghform
+                    +input("text","ghuser","Github Username","Github Username","ghuser")
+                    +submit2("Check","default","checkbutton")
 
         .row
             h3#total Total PR's: 0
