@@ -7,6 +7,10 @@ a {
     color: #00B7FF;
 }
 
+.github-fork-ribbon:before, .github-fork-ribbon:after {
+    box-sizing: content-box;
+}
+
 .starter-template {
     padding: 40px 15px;
     text-align: center;
