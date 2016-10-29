@@ -1,5 +1,5 @@
 function getDataFromGithub(username) {
-    var url = "https://api.github.com/search/issues?q=author:" + username + "+type:pr+-label:invalid+created:2016-10-01..2016-10-31";
+    var url = "https://api.github.com/search/issues?per_page=1000&q=author:" + username + "+type:pr+-label:invalid+created:2016-10-01..2016-10-31";
 
     var results = $("#results");
     results.html("");
